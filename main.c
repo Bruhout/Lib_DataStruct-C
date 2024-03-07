@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+    The data is passed as a void* pointer to whatever data you wish the node to store.
+    It doesnt matter what kind of data the void* points to.
+    But the print function needs to cast to a type to print.
+    So in order to use the print_list_int, all members must be int*,
+    to use print_list_char all memebers must be char*.
+    If you will to use a custom datatype, you must implement a print function for it yourself.
+*/
 typedef struct NODE {
     void* data;
     struct NODE* next_node;
