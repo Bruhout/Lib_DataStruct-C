@@ -6,3 +6,6 @@ To get started:
 2. Link against linked_list.a in your compiler.
 
 Source code contained in main.c.
+
+Version 2.0
+1. Added more documentation.
