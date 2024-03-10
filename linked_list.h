@@ -93,4 +93,12 @@ Execution terminated if invalid linked list passed
 Execution terminated if invalid index passed
 */
 //---------------------------------------------
+int free_list(NODE* head_node);
+/*
+Goes through the list freeing node-by-node.
+Dont try to access the list after freeing it
+I dont know what kinda errors u gonna get, but itll be Undefined Behaviour.
+Returns 0 if list sucessfully freed.
+Returns -2 if invalid linked list passed.
+*/
 #endif /* LINKED_LIST_H */
