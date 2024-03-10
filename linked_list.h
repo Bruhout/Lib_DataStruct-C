@@ -58,6 +58,16 @@ Returns -2 if invalid linked list is passed
 Otherwise, returns 0 if successfully executed.
 */
 //---------------------------------------------
+int custom_print(NODE* head_node, void (*print_f)(void*));
+/*
+This lets you use a custom definition of how you would like the void* to be printed.
+The user passes a self defined function.
+This function specifies what type void* points to and how its to be printed.
+custom_print, the calls this user defined function over all the nodes in the list.
+P.S.: the user function can actually be doing anything, so maybe you can use this as a general functionality
+to call any function over the entire list. IDK try it
+*/
+//---------------------------------------------
 void *indexing(NODE *first_node, int index);
 /*
 Since the list only stores void*, indexing will return a pointer to the data.
