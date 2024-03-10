@@ -8,4 +8,5 @@ To get started:
 Source code contained in main.c.
 
 Version 2.0
-1. Added more documentation.
+1. Added a custom print function.
+2. Added more documentation.
