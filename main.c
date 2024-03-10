@@ -207,3 +207,16 @@ void delete_node(NODE **list, int index) {
   }
   buffer->next_node = buffer->next_node->next_node;
 }
+
+int free_list(NODE* head_node)  {
+  if (head_node==NULL) {
+    printf("Invalid linked list passed\n");
+    return -2;
+  }
+  NODE* buffer=head_node;
+  while (buffer!=NULL) {
+    free(buffer);
+    buffer=buffer->next_node;
+  }
+  return 0;
+}
