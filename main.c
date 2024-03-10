@@ -121,12 +121,12 @@ int print_list_char(NODE *head_node) {
   return 0;
 }
 
-int print_list_int(NODE *first_node) {
-  if (first_node==NULL) {
+int print_list_int(NODE *head_node) {
+  if (head_node==NULL) {
     printf("Invalid linked list passed\n");
     return -2;
   }
-  NODE *buffer = first_node;
+  NODE *buffer = head_node;
   while (buffer != NULL) {
     printf("%i\n", *(int *)(buffer->data));
     buffer = buffer->next_node;
@@ -135,7 +135,22 @@ int print_list_int(NODE *first_node) {
 }
 // Typecasting is only really required to be done when printing. the array
 // itself can easily just store void*, a pointer. doesnt matter what to.
-void *indexing(NODE *first_node, int index) {
+
+int custom_print(NODE* head_node, void (*print_f)(void*)) {
+  if (head_node==NULL) {
+    printf("Invalid linked list passed\n");
+    return -2;
+  }
+  NODE* buffer=head_node;
+  while(buffer!=NULL) {
+    print_f(buffer->data);
+    buffer=buffer->next_node;
+  }
+  return 0;
+}
+
+
+void* indexing(NODE *first_node, int index) {
   if (first_node == NULL) {
     printf("Invalid linked list passed\n");
     return NULL;
