@@ -10,3 +10,6 @@ Source code contained in main.c.
 Version 2.0
 1. Added a custom print function.
 2. Added more documentation.
+
+Version 3.0
+1. Ability to free the list after use, via the free_list function.
