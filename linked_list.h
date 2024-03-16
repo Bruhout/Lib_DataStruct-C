@@ -93,4 +93,23 @@ Execution terminated if invalid linked list passed
 Execution terminated if invalid index passed
 */
 //---------------------------------------------
+int free_list(NODE* head_node);
+/*
+Goes through the list freeing node-by-node.
+Dont try to access the list after freeing it
+I dont know what kinda errors u gonna get, but itll be Undefined Behaviour.
+Returns 0 if list sucessfully freed.
+Returns -2 if invalid linked list passed.
+*/
+NODE* LlFromArray_int(int* array_ptr, int length);
+/*
+Works only for integer arrays.
+Returns a pointer to the head_node of the created linked_list.
+Length controls the index till which the linked_list is created.
+*/
+int ArrayFromLl_int(NODE* head_node, int* array_ptr, int length);
+/*
+Memory must be allocated before calling the functions.
+Length controls the index till which the array is populated.
+*/
 #endif /* LINKED_LIST_H */
