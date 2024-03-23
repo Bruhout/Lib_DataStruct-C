@@ -1,5 +1,3 @@
-#ifndef LINKED_LIST_H
-#define LINKED_LIST_H
 
 typedef struct NODE {
     void *data;
@@ -112,4 +110,25 @@ int ArrayFromLl_int(NODE* head_node, int* array_ptr, int length);
 Memory must be allocated before calling the functions.
 Length controls the index till which the array is populated.
 */
-#endif /* LINKED_LIST_H */
+
+int search_list(NODE* head_node, void* data_element, int(*compare)(void*, void*));
+/*
+Searches the list for a given data_element and returns its index.
+The function to compare two data_elements must be defined by the user.
+This is done to allow this function to work with any datatype.
+Returns -1 if the data_element is not found within the given list.
+*/
+
+int search_list_char(NODE* head_node, char* word);
+/*
+Implementation of search list for char* type.
+Comparison is done using strcasecmp.
+Returns -1 if element is not found.
+*/
+
+int search_list_int(NODE* head_node, char* word);
+/*
+Implementation of search list for int type.
+Comparision is done using the '==' operator.
+Returns -1 if element not found.
+*/

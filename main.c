@@ -45,21 +45,21 @@ int insert_at_beginning(NODE **first_node_ptr, void *data_element) {
     return 0;
 }
 
-int insert_at_end(NODE *first_node, void *data_element) {
-    if (first_node==NULL) {
+int insert_at_end(NODE *head_node, void *data_element) {
+    if (head_node==NULL) {
         printf("Invalid linked_list passed\n");
         return -2;
     }
-    NODE *buffer = first_node;
-    while (buffer->next_node != NULL) {
-        buffer = buffer->next_node;
+    NODE *buffer_node = head_node;
+    while (buffer_node->next_node != NULL) {
+        buffer_node = buffer_node->next_node;
     }
     NODE *new_node = malloc(sizeof(NODE));
     if (new_node == NULL) {
         printf("Error allocating memory\n");
         return -1;
     }
-    buffer->next_node = new_node;
+    buffer_node->next_node = new_node;
     new_node->data = data_element;
     new_node->next_node = NULL;
     return 0;
@@ -165,6 +165,7 @@ void* indexing(NODE *first_node, int index) {
     return buffer->data;
 }
 
+
 void concatenate(NODE *first_list, NODE *second_list) {
     if (first_list == NULL) {
         printf("Invalid first_list\n");
@@ -243,3 +244,44 @@ int ArrayFromLl_int(NODE* head_node, int* array_ptr, int length) {
     return count;
 }
 //WORKING LESSGOO
+
+int search_list(NODE* head_node, void* data_element, int(*compare)(void*, void*)) {
+    NODE* buffer_node=head_node;
+    int counter=0;
+    while(buffer_node!=NULL) {
+        if (compare(data_element, buffer_node->data)==0) {
+            return counter;
+        }
+        buffer_node=buffer_node->next_node;
+        counter++;
+    }
+    return -1;
+}
+//compare returns 0 for true, anything else for false.
+//search_list returns the index for true, -1 for false
+
+int search_list_char(NODE* head_node , char* word) {
+    NODE* buffer_node=head_node;
+    int counter=0;
+    while (buffer_node!=NULL) {
+        if (strcasecmp(word, (void*)buffer_node->data)==0) {
+            return counter;
+        }
+        buffer_node=buffer_node->next_node;
+        counter++;
+    }
+    return -1;
+}
+
+int search_list_int(NODE* head_node, int integer) {
+    NODE* buffer_node=head_node;
+    int counter=0;
+    while (buffer_node!=NULL) {
+        if (integer==*(int*)buffer_node->data) {
+            return counter;
+        }
+        buffer_node=buffer_node->next_node;
+        counter++;
+    }
+    return -1;
+}
