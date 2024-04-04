@@ -10,8 +10,7 @@ For linked list:
          gcc -o linked_list.o linked_list.c -c
 
    4. Now link against linked_list.o.
-
-   5 .You have successfully learned how to use linked_list in your own project.
+   5. You have successfully learned how to use linked_list in your own project.
 
 For hash table:
    1. Follow the above steps, as hash_table does require the linked_list library.
