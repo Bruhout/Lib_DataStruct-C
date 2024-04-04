@@ -6,7 +6,7 @@ To get started:
 2. Link against linked_list.a in your compiler (On arm64 computers)
 3. Otherwise, build the main.c file with the following command
 
-   gcc -o linked_list.o main.c -c
+   gcc -o linked_list.o linked_list.c -c
 
 Source code contained in main.c.
 
