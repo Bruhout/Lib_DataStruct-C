@@ -33,3 +33,12 @@ Version 3.0
 
 Version 4.0
 1. Added Hash Tables
+
+Version 5.0
+06/04/2024
+1. Improved documentation.
+2. Added Error handling.
+3. Function names updated
+4. GetNodePointer functionality added.
+
+Also added makefile for building.
