@@ -2,6 +2,7 @@
 Right now only has linked lists and hash tables implemented, soon adding many more data structures. Next up will be a two way linked list.
 
 To get started:
+
       Including the functions headers
             1. Within the include folder, header files for the libraries are present.
             2. These header files have function headers for the functionality of the library.
