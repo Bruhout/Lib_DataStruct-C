@@ -348,6 +348,9 @@ NODE* GetPointerToNodeCompare(NODE* head_node , void* comparision_element , int(
     //compare function returns 0 when found
     while (compare_function(buffer_node->data , comparision_element)!=0)
     {
+        if (buffer_node == NULL) {
+            break;
+        }
         buffer_node=buffer_node->next_node;
     }
 
