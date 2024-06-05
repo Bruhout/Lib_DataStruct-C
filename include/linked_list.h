@@ -1,5 +1,5 @@
 #ifndef LINKED_LIST_H
-#define LINKED_liST_H
+#define LINKED_LIST_H
 
 typedef struct NODE {
     void *data;
@@ -12,13 +12,23 @@ Returns pointer to the node created.
 Returns NULL if memory allocation failed.
 */
 //---------------------------------------------
-NODE *CreateList(void *data_element);
+// NODE *CreateList(void *data_element);
+// Removed
 /*
 Returns pointer the first node of the list.
 The next_node attribute is set to NULL.
 Returns NULL if memory allocation error.
 */
 //---------------------------------------------
+
+NODE* CreateNodeBlank();
+/*
+Returns pointer to the node created.
+Returns NULL is memory allocation failed.
+The data pointer of the new node is set to NULL
+*/
+//---------------------------------------------
+
 int InsertAtBeginning(NODE **first_node_ptr, void *data_element);
 /*
 list is passed as a NODE**, a pointer to the pointer to the first node.
