@@ -108,13 +108,13 @@ The contatenated list is stored in the first_list pointer.
 */
 //---------------------------------------------
 
-void DeleteNode(NODE **list, int index);
+NODE* DeleteNode(NODE *head_node, int index);
 /*
 list is passed as a NODE**, a pointer to the pointer to the first node.
 This is because the NODE* needs to be passed by reference.
-No return value from this function.
-Execution terminated if invalid linked list passed
-Execution terminated if invalid index passed
+NVM this
+
+Returns a pointer to the head node of the new linked list
 */
 //---------------------------------------------
 
