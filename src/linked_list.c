@@ -231,7 +231,7 @@ NODE* LlFromArray_int(int* array_ptr,int length)
     }
     return new_list;
 }
-//WORKING
+
 int ArrayFromLl_int(NODE* head_node, int* array_ptr, int length) 
 {
     if (head_node==NULL)
@@ -249,7 +249,7 @@ int ArrayFromLl_int(NODE* head_node, int* array_ptr, int length)
     }
     return count;
 }
-//WORKING LESSGOO
+
 
 int SearchList(NODE* head_node, void* data_element, int(*compare)(void*, void*)) 
 {
