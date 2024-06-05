@@ -206,25 +206,29 @@ void Concatenate(NODE *first_list, NODE *second_list)
     }
 }
 
-void DeleteNode(NODE **list, int index)
+NODE* DeleteNode(NODE *head_node, int index)
 {
-    if (list == NULL) {
+    if (head_node == NULL) {
         printf("Invalid linked list passed\n");
-        return;
+        return NULL;
     }
-    if (index < 0 || index >= ListLength(*list)) {
+    if (index < 0 || index >= ListLength(head_node)) {
         printf("Invalid index\n");
-        return;
+        return NULL;
     }
-    NODE *buffer = *list;
+    NODE* buffer1 = head_node;
+    NODE* buffer2 = head_node;
     if (index == 0) {
-        *list = buffer->next_node;
-        return;
+        return buffer1->next_node;
     }
     for (int i = 0; i < index - 1; i++) {
-        buffer = buffer->next_node;
+        buffer1 = buffer1->next_node;
+        buffer2 = buffer2->next_node;
     }
-    buffer->next_node = buffer->next_node->next_node;
+    buffer2 = buffer2->next_node;
+    buffer1->next_node = buffer1->next_node->next_node;
+    free(buffer2);
+    return head_node;
 }
 
 int FreeList(NODE* head_node)  
@@ -386,4 +390,13 @@ NODE* GetPointerToNodeCompare(NODE* head_node , void* comparision_element , int(
     }
 
     return buffer_node;
+}
+
+int main(void)
+{
+    int array[] = {1,2,3,4,5};
+    NODE* new_list = LlFromArray_int(array , 5);
+    PrintList_int(new_list);
+    new_list = DeleteNode(new_list , 3);
+    PrintList_int(new_list);
 }
