@@ -4,7 +4,8 @@
 #include "../include/linked_list.h"
 
 
-NODE *CreateNode(void *data_element) {
+NODE *CreateNode(void *data_element)
+{
     NODE *new_node = malloc(sizeof(NODE));
     if (new_node == NULL) {
         printf("Memory allocation error\n");
@@ -15,34 +16,39 @@ NODE *CreateNode(void *data_element) {
     return new_node;
 }
 
-NODE *CreateList(void *data_element) {
-    NODE *new_list_head = CreateNode(NULL);
-    if (new_list_head==NULL) {
+NODE* CreateNodeBlank()
+{
+    NODE* new_node = malloc(sizeof(NODE));
+    if(new_node == NULL) {
         printf("Memory allocation error\n");
         return NULL;
     }
-    new_list_head->next_node = NULL;
-    new_list_head->data = data_element;
-    return new_list_head;
+    new_node->data = NULL;
+    new_node->next_node = NULL;
+    return new_node;
 }
 
-int InsertAtBeginning(NODE **first_node_ptr, void *data_element) {
+int InsertAtBeginning(NODE **first_node_ptr, void *data_element)
+{
     if (*first_node_ptr == NULL) {
         printf("invalid linked list passed\n");
         return -2;
     }
+
     NODE *new_node = CreateNode(NULL);
     if (new_node==NULL) {
         printf("Memory allocation error\n");
         return -1;
     }
+
     new_node->data = data_element;
     new_node->next_node =*first_node_ptr; // The next_node points to the preivous first node.
     *first_node_ptr = new_node; // New node is set to the first node.
     return 0;
 }
 
-int InsertAtEnd(NODE *head_node, void *data_element) {
+int InsertAtEnd(NODE *head_node, void *data_element) 
+{
     if (head_node==NULL) {
         printf("Invalid linked_list passed\n");
         return -2;
@@ -62,21 +68,24 @@ int InsertAtEnd(NODE *head_node, void *data_element) {
     return 0;
 }
 
-int ListLength(NODE *list_head) {
+int ListLength(NODE *list_head)
+{
     if (list_head == NULL) {
         printf("Invalid linked list passed\n");
         return -2;
     }
     NODE *buffer = list_head;
     int count = 0;
-    while (buffer != NULL) {
+    while (buffer != NULL) 
+    {
         buffer = buffer->next_node;
         count += 1;
     }
     return count;
 }
 
-int InsertAtIndex(NODE *list_head, void *data_element, int index) {
+int InsertAtIndex(NODE *list_head, void *data_element, int index)
+{
     if (list_head == NULL) {
         printf("Invalid linked list passed\n");
         return -2;
@@ -93,10 +102,13 @@ int InsertAtIndex(NODE *list_head, void *data_element, int index) {
         return -1;
     }
     new_node->data = data_element;
-    for (int i = 0; i < index - 1; i++) {
+
+    for (int i = 0; i < index - 1; i++)
+    {
         buffer1 = buffer1->next_node;
     }
-    for (int i = 0; i < index; i++) {
+    for (int i = 0; i < index; i++)
+    {
         buffer2 = buffer2->next_node;
     }
     buffer1->next_node = new_node;
@@ -104,26 +116,30 @@ int InsertAtIndex(NODE *list_head, void *data_element, int index) {
     return 0;
 }
 
-int PrintList_char(NODE *head_node) {
+int PrintList_char(NODE *head_node)
+{
     if (head_node==NULL) {
         printf("Inavlid linked list passed\n");
         return -2;
     }
     NODE *buffer = head_node;
-    while (buffer != NULL) {
+    while (buffer != NULL)
+    {
         printf("%s\n", (char *)buffer->data);
         buffer = buffer->next_node;
     }
     return 0;
 }
 
-int PrintList_int(NODE *head_node) {
+int PrintList_int(NODE *head_node)
+{
     if (head_node==NULL) {
         printf("Invalid linked list passed\n");
         return -2;
     }
     NODE *buffer = head_node;
-    while (buffer != NULL) {
+    while (buffer != NULL)
+    {
         printf("%i\n", *(int *)(buffer->data));
         buffer = buffer->next_node;
     }
@@ -132,13 +148,15 @@ int PrintList_int(NODE *head_node) {
 // Typecasting is only really required to be done when printing. the array
 // itself can easily just store void*, a pointer. doesnt matter what to.
 
-int CustomPrint(NODE* head_node, void (*print_f)(void*)) {
+int CustomPrint(NODE* head_node, void (*print_f)(void*))
+{
     if (head_node==NULL) {
         printf("Invalid linked list passed\n");
         return -2;
     }
     NODE* buffer=head_node;
-    while(buffer!=NULL) {
+    while(buffer!=NULL)
+    {
         print_f(buffer->data);
         buffer=buffer->next_node;
     }
@@ -146,13 +164,15 @@ int CustomPrint(NODE* head_node, void (*print_f)(void*)) {
 }
 
 
-void* Indexing(NODE *first_node, int index) {
+void* Indexing(NODE *first_node, int index)
+{
     if (first_node == NULL) {
         printf("Invalid linked list passed\n");
         return NULL;
     }
     NODE *buffer = first_node;
-    for (int i = 0; i < index; i++) {
+    for (int i = 0; i < index; i++)
+    {
         if (buffer == NULL) {
         printf("Not enough nodes\n");
         return NULL;
@@ -163,7 +183,8 @@ void* Indexing(NODE *first_node, int index) {
 }
 
 
-void Concatenate(NODE *first_list, NODE *second_list) {
+void Concatenate(NODE *first_list, NODE *second_list)
+{
     if (first_list == NULL) {
         printf("Invalid first_list\n");
         return;
@@ -185,7 +206,8 @@ void Concatenate(NODE *first_list, NODE *second_list) {
     }
 }
 
-void DeleteNode(NODE **list, int index) {
+void DeleteNode(NODE **list, int index)
+{
     if (list == NULL) {
         printf("Invalid linked list passed\n");
         return;
@@ -221,13 +243,22 @@ int FreeList(NODE* head_node)
 
 NODE* LlFromArray_int(int* array_ptr,int length) 
 {
-    int* int_memory=malloc(sizeof(int));
-    *int_memory=array_ptr[0];
-    NODE* new_list=CreateList(int_memory);
-    for (int i=1; i<length; i++) {
-        int_memory=malloc(sizeof(int));
-        *int_memory=array_ptr[i];
-        InsertAtEnd(new_list, int_memory);
+    int* int_memory = malloc(sizeof(int));
+    *int_memory = array_ptr[0];
+    NODE* new_list=CreateNode(int_memory);
+    NODE* buffer_node = new_list;
+    NODE* new_node;
+    for (int i=1; i<length; i++) 
+    {
+        int_memory = malloc(sizeof(int));
+        *int_memory = array_ptr[i];
+
+        NODE* new_node = malloc(sizeof(NODE));
+        new_node->data = int_memory;
+        new_node->next_node = NULL;
+        
+        buffer_node->next_node = new_node;
+        buffer_node = new_node;
     }
     return new_list;
 }
