@@ -391,12 +391,3 @@ NODE* GetPointerToNodeCompare(NODE* head_node , void* comparision_element , int(
 
     return buffer_node;
 }
-
-int main(void)
-{
-    int array[] = {1,2,3,4,5};
-    NODE* new_list = LlFromArray_int(array , 5);
-    PrintList_int(new_list);
-    new_list = DeleteNode(new_list , 3);
-    PrintList_int(new_list);
-}
