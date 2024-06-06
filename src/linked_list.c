@@ -53,16 +53,16 @@ int InsertAtEnd(NODE *head_node, void *data_element)
         printf("Invalid linked_list passed\n");
         return -2;
     }
-    NODE *buffer_node = head_node;
-    while (buffer_node->next_node != NULL) {
-        buffer_node = buffer_node->next_node;
+    NODE *buffer_ptr = head_node;
+    while (buffer_ptr->next_node != NULL) {
+        buffer_ptr = buffer_ptr->next_node;
     }
     NODE *new_node = malloc(sizeof(NODE));
     if (new_node == NULL) {
         printf("Error allocating memory\n");
         return -1;
     }
-    buffer_node->next_node = new_node;
+    buffer_ptr->next_node = new_node;
     new_node->data = data_element;
     new_node->next_node = NULL;
     return 0;
@@ -250,7 +250,7 @@ NODE* LlFromArray_int(int* array_ptr,int length)
     int* int_memory = malloc(sizeof(int));
     *int_memory = array_ptr[0];
     NODE* new_list=CreateNode(int_memory);
-    NODE* buffer_node = new_list;
+    NODE* buffer_ptr = new_list;
     NODE* new_node;
     for (int i=1; i<length; i++) 
     {
@@ -261,8 +261,8 @@ NODE* LlFromArray_int(int* array_ptr,int length)
         new_node->data = int_memory;
         new_node->next_node = NULL;
         
-        buffer_node->next_node = new_node;
-        buffer_node = new_node;
+        buffer_ptr->next_node = new_node;
+        buffer_ptr = new_node;
     }
     return new_list;
 }
@@ -294,13 +294,13 @@ int SearchList(NODE* head_node, void* data_element, int(*compare)(void*, void*))
         return -2;
     }
 
-    NODE* buffer_node=head_node;
+    NODE* buffer_ptr=head_node;
     int counter=0;
-    while(buffer_node!=NULL) {
-        if (compare(data_element, buffer_node->data)==0) {
+    while(buffer_ptr!=NULL) {
+        if (compare(data_element, buffer_ptr->data)==0) {
             return counter;
         }
-        buffer_node=buffer_node->next_node;
+        buffer_ptr=buffer_ptr->next_node;
         counter++;
     }
     return -1;
@@ -316,13 +316,13 @@ int SearchList_char(NODE* head_node , char* word)
         return -2;
     }
 
-    NODE* buffer_node=head_node;
+    NODE* buffer_ptr=head_node;
     int counter=0;
-    while (buffer_node!=NULL) {
-        if (strcasecmp(word, (void*)buffer_node->data)==0) {
+    while (buffer_ptr!=NULL) {
+        if (strcasecmp(word, (void*)buffer_ptr->data)==0) {
             return counter;
         }
-        buffer_node=buffer_node->next_node;
+        buffer_ptr=buffer_ptr->next_node;
         counter++;
     }
     return -1;
@@ -336,13 +336,13 @@ int SearchList_int(NODE* head_node, int integer)
         return -2;
     }
 
-    NODE* buffer_node=head_node;
+    NODE* buffer_ptr=head_node;
     int counter=0;
-    while (buffer_node!=NULL) {
-        if (integer==*(int*)buffer_node->data) {
+    while (buffer_ptr!=NULL) {
+        if (integer==*(int*)buffer_ptr->data) {
             return counter;
         }
-        buffer_node=buffer_node->next_node;
+        buffer_ptr=buffer_ptr->next_node;
         counter++;
     }
     return -1;
@@ -356,19 +356,19 @@ NODE* GetPointerToNode(NODE* head_node , int index)
         return NULL;
     }
 
-    NODE* buffer_node=head_node;
+    NODE* buffer_ptr=head_node;
 
     for (int i=0 ; i<index ; i++)
     {
-        if (buffer_node==NULL)
+        if (buffer_ptr==NULL)
         {
             printf("Index passed is too large\n");
             return NULL;
         }
-        buffer_node=buffer_node->next_node;
+        buffer_ptr=buffer_ptr->next_node;
     }
     
-    return buffer_node;
+    return buffer_ptr;
 }
 
 NODE* GetPointerToNodeCompare(NODE* head_node , void* comparision_element , int(*compare_function)(void* , void*))
@@ -379,15 +379,15 @@ NODE* GetPointerToNodeCompare(NODE* head_node , void* comparision_element , int(
         return NULL;
     }
     
-    NODE* buffer_node=head_node;
+    NODE* buffer_ptr=head_node;
     //compare function returns 0 when found
-    while (compare_function(buffer_node->data , comparision_element)!=0)
+    while (compare_function(buffer_ptr->data , comparision_element)!=0)
     {
-        if (buffer_node == NULL) {
+        if (buffer_ptr == NULL) {
             break;
         }
-        buffer_node=buffer_node->next_node;
+        buffer_ptr=buffer_ptr->next_node;
     }
 
-    return buffer_node;
+    return buffer_ptr;
 }
